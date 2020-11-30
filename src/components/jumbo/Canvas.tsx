@@ -5,6 +5,9 @@ import {
   createTexture,
   setupVertexAttribs,
   createFramebuffer,
+  createTextCanvas,
+	createTextureFromHTMLElement,
+	resize,
 } from './utils';
 import { water_vs, water_fs } from './shaders/water';
 import { out_vs, out_fs } from './shaders/out';
@@ -55,25 +58,28 @@ const Canvas = () => {
     gl.viewport(0, 0, program.output.w, program.output.h);
     gl.uniform2f(program.u.resolutionOut, program.output.w, program.output.h);
     gl.uniform1i(program.u.heightMap, 0);
-    //gl.uniform1i(program.u.background, 1);
+		gl.uniform1i(program.u.background, 1);
     gl.activeTexture(gl.TEXTURE0 + 0);
     gl.bindTexture(gl.TEXTURE_2D, program.textures[b]);
+    gl.activeTexture(gl.TEXTURE0 + 1);
+    gl.bindTexture(gl.TEXTURE_2D, program.background);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
   }
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const gl = canvas.getContext('webgl');
+		const deviceRatio = resize(canvas);
     // retina support
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    //canvas.width = window.innerWidth;
+    //canvas.height = window.innerHeight;
     //context.scale(2, 2);
 
     let shuffle = 0;
     let frameCount = 0;
     let animationFrameId;
 
-    const SCALE = 12;
+    const SCALE = 2;
     const RES = {
       x: Math.floor(canvas.width / SCALE),
       y: Math.floor(canvas.height / SCALE),
@@ -87,6 +93,8 @@ const Canvas = () => {
     const tex_B = createTexture(gl, RES.x, RES.y, black);
     const tex_C = createTexture(gl, RES.x, RES.y);
     const fbo = createFramebuffer(gl, tex_C);
+		const canvasBg = createTextCanvas(gl.canvas.width, gl.canvas.height, "SOME TEXT");
+		const textBackground = createTextureFromHTMLElement(gl, canvasBg);
 
     let mouse = {
       x: 0,
@@ -100,10 +108,11 @@ const Canvas = () => {
     function handleMouse(e) {
       clearTimeout(timeout);
       canDraw = true;
+			const deviceScale = SCALE * deviceRatio;
       const rect = canvas.getBoundingClientRect();
       mouse = {
-        x: (e.clientX - rect.left) / SCALE,
-        y: (rect.height - (e.clientY - rect.top) - 1) / SCALE,
+        x: (e.clientX - rect.left) / deviceScale,
+        y: (rect.height - (e.clientY - rect.top) - 1) / deviceScale,
         z: 1,
       };
       timeout = setTimeout(function () {
@@ -115,10 +124,11 @@ const Canvas = () => {
       const touch = e.touches[0];
       clearTimeout(timeout);
       canDraw = true;
+			const deviceScale = SCALE * deviceRatio;
       const rect = canvas.getBoundingClientRect();
       mouse = {
-        x: (touch.clientX - rect.left) / SCALE,
-        y: (rect.height - (touch.clientY - rect.top) - 1) / SCALE,
+        x: (touch.clientX - rect.left) / deviceScale,
+        y: (rect.height - (touch.clientY - rect.top) - 1) / deviceScale,
         z: 1,
       };
       timeout = setTimeout(function () {
@@ -130,6 +140,7 @@ const Canvas = () => {
     canvas.addEventListener('mousemove', handleMouse, false);
     canvas.addEventListener('touchstart', handleTouch, false);
     canvas.addEventListener('touchmove', handleTouch, false);
+		window.addEventListener('resize', () => resize(canvas), false);
 
     const program = {
       ripple: {
@@ -143,6 +154,7 @@ const Canvas = () => {
         h: canvas.height,
       },
       textures: [tex_A, tex_B, tex_C],
+			background: textBackground,
       framebuffer: fbo,
       u: {
         prevTex: gl.getUniformLocation(rippleProg, 'u_prevTex'),

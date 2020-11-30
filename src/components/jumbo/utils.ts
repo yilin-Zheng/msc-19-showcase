@@ -36,7 +36,26 @@ function createTexture(gl, w, h, data = null) {
   return t;
 }
 
-function createTextureFromCanvas(gl, w, h, text) {
+function createTextureFromHTMLElement(gl, element){
+  const t = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, t);
+  gl.texImage2D(
+    gl.TEXTURE_2D,
+    0,
+    gl.RGBA,
+    gl.RGBA,
+    gl.UNSIGNED_BYTE,
+    element,
+  );
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  return t;
+}
+
+function createTextCanvas(w, h, text) {
   const ctx = document.createElement('canvas').getContext('2d');
   ctx.canvas.width = w;
   ctx.canvas.height = h;
@@ -126,11 +145,26 @@ function createFramebuffer(gl, tex) {
   return f;
 }
 
+function resize(canvas) {
+  var cssToRealPixels = window.devicePixelRatio || 1;
+  var displayWidth  = Math.floor(canvas.clientWidth  * cssToRealPixels);
+  var displayHeight = Math.floor(canvas.clientHeight * cssToRealPixels);
+  if (canvas.width  !== displayWidth ||
+      canvas.height !== displayHeight) {
+    canvas.width  = displayWidth;
+    canvas.height = displayHeight;
+  }
+  
+  return cssToRealPixels;
+}
+
 export {
   createProgram,
   createTexture,
-  createTextureFromCanvas,
+  createTextCanvas,
+  createTextureFromHTMLElement,
   createVAO,
   setupVertexAttribs,
   createFramebuffer,
+	resize,
 };

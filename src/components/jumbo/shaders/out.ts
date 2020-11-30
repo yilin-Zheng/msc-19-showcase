@@ -18,7 +18,7 @@ export const out_fs = `#version 100
   uniform sampler2D u_background;
   uniform vec2 u_resolution;
 
-  #define TEXTURE 2
+  #define TEXTURE 0
 
   void main(){
 
