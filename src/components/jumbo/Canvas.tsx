@@ -78,10 +78,10 @@ const Canvas = () => {
     gl.useProgram(program.output.prog);
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     gl.viewport(0, 0, program.output.w, program.output.h);
-    gl.uniform2f(program.u.resolutionOut, program.output.w, program.output.h);
     gl.uniform1i(program.u.outputTex, 0);
     gl.activeTexture(gl.TEXTURE0 + 0);
     gl.bindTexture(gl.TEXTURE_2D, program.outputTex);
+    //gl.bindTexture(gl.TEXTURE_2D, program.kernel);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
   }
 
@@ -123,22 +123,22 @@ const Canvas = () => {
     );
     const textBackground = createTextureFromHTMLElement(gl, canvasBg);
     const kernelData = new Uint8Array([
-      0,
-      8,
-      2,
-      10,
-      12,
-      4,
-      14,
-      6,
-      3,
-      11,
-      1,
-      9,
-      15,
-      7,
-      13,
-      5,
+      0,  0, 0, 16,
+      8, 0, 0, 16,
+      2, 0, 0, 16,
+      10, 0, 0, 16,
+      12, 0, 0, 16,
+      4, 0, 0, 16,
+      14, 0, 0, 16,
+      6, 0, 0, 16,
+      3, 0, 0, 16,
+      11, 0, 0, 16,
+      1, 0, 0, 16,
+      9, 0, 0, 16,
+      15, 0, 0, 16,
+      7, 0, 0, 16,
+      13, 0, 0, 16,
+      5,  0, 0, 16,
     ]).map((k) => Math.floor((k / 16) * 255));
     const kernelTex = createTexture(gl, 4, 4, kernelData);
 
@@ -225,7 +225,6 @@ const Canvas = () => {
         resolutionDither: gl.getUniformLocation(ditherProg, 'u_resolution'),
         kernel: gl.getUniformLocation(ditherProg, 'u_kernel'),
         // Output Uniforms
-        resolutionOut: gl.getUniformLocation(outputProg, 'u_resolution'),
         outputTex: gl.getUniformLocation(outputProg, 'u_texture'),
       },
     };
