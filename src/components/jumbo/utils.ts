@@ -36,90 +36,36 @@ function createTexture(gl, w, h, data = null) {
   return t;
 }
 
-function createMultilineText(ctx, textToWrite, maxWidth, text) {
-  // https://delphic.me.uk/tutorials/webgl-text
-  textToWrite = textToWrite.replace('\n', ' ');
-  var currentText = textToWrite;
-  var futureText;
-  var subWidth = 0;
-  var maxLineWidth = 0;
-
-  var wordArray = textToWrite.split(' ');
-  var wordsInCurrent, wordArrayLength;
-  wordsInCurrent = wordArrayLength = wordArray.length;
-
-  // Reduce currentText until it is less than maxWidth or is a single word
-  // futureText var keeps track of text not yet written to a text line
-  while (ctx.measureText(currentText) > maxWidth && wordsInCurrent > 1) {
-    wordsInCurrent--;
-    var linebreak = false;
-
-    currentText = futureText = '';
-    for (var i = 0; i < wordArrayLength; i++) {
-      if (i < wordsInCurrent) {
-        currentText += wordArray[i];
-        if (i + 1 < wordsInCurrent) {
-          currentText += ' ';
-        }
-      } else {
-        futureText += wordArray[i];
-        if (i + 1 < wordArrayLength) {
-          futureText += ' ';
-        }
-      }
-    }
-  }
-  text.push(currentText); // Write this line of text to the array
-  maxLineWidth = ctx.measureText(currentText);
-
-  // If there is any text left to be written call the function again
-  if (futureText) {
-    subWidth = createMultilineText(ctx, futureText, maxWidth, text);
-    if (subWidth > maxLineWidth) {
-      maxLineWidth = subWidth;
-    }
-  }
-
-  // Return the maximum line width
-  return maxLineWidth;
-}
-
 function createTextureFromHTMLElement(gl, element) {
   const t = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, t);
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, element);
-	//gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  //gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
   return t;
 }
 
-function createTextCanvas(w, h, text) {
+function createTextCanvas(w, h, text, textHeight) {
   const ctx = document.createElement('canvas').getContext('2d');
   ctx.canvas.width = w;
   ctx.canvas.height = h;
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, w, h);
 
-  var outputText = [];
-  var textX, textY;
-  var textHeight = 22;
-  var maxWidth = w;
-
   ctx.font = textHeight + 'px sans-serif';
-  maxWidth = createMultilineText(ctx, text, maxWidth, outputText);
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillStyle = 'white';
 
-  textX = w / 2;
-  var offset = (h - textHeight * (outputText.length + 1)) * 0.5;
+  const splitText = text.split('\n');
 
-  for (var i = 0; i < outputText.length; i++) {
-    textY = (i + 1) * textHeight + offset;
-    ctx.fillText(outputText[i], textX, textY);
+  const totalHeight = splitText.length * textHeight;
+  for(let i=0; i<splitText.length; i++){
+    const y_offset = (i*textHeight)-totalHeight+textHeight;
+    ctx.fillText(splitText[i], w/2, (h/2) + y_offset);
   }
 
   return ctx.canvas;

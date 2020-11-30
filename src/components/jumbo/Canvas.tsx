@@ -30,7 +30,7 @@ const Canvas = () => {
     let b = (shuffle + 1) % 3;
     let c = (shuffle + 2) % 3;
 
-		/* RIPPLE */
+    /* RIPPLE */
     gl.useProgram(program.ripple.prog);
     gl.bindFramebuffer(gl.FRAMEBUFFER, program.fbo.ripple);
     gl.framebufferTexture2D(
@@ -54,14 +54,18 @@ const Canvas = () => {
     gl.uniform3f(program.u.mouse, mouse.x, mouse.y, mouse.z);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
 
-		/* DITHER */
+    /* DITHER */
     gl.useProgram(program.dither.prog);
     gl.bindFramebuffer(gl.FRAMEBUFFER, program.fbo.output);
     gl.viewport(0, 0, program.dither.w, program.dither.h);
-    gl.uniform2f(program.u.resolutionDither, program.dither.w, program.dither.h);
+    gl.uniform2f(
+      program.u.resolutionDither,
+      program.dither.w,
+      program.dither.h
+    );
     gl.uniform1i(program.u.heightMap, 0);
     gl.uniform1i(program.u.background, 1);
-		gl.uniform1i(program.u.kernel, 2);
+    gl.uniform1i(program.u.kernel, 2);
     gl.activeTexture(gl.TEXTURE0 + 0);
     gl.bindTexture(gl.TEXTURE_2D, program.textures[b]);
     gl.activeTexture(gl.TEXTURE0 + 1);
@@ -70,7 +74,7 @@ const Canvas = () => {
     gl.bindTexture(gl.TEXTURE_2D, program.kernel);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
 
-		/* OUTPUT */
+    /* OUTPUT */
     gl.useProgram(program.output.prog);
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     gl.viewport(0, 0, program.output.w, program.output.h);
@@ -112,15 +116,31 @@ const Canvas = () => {
     const rippleFBO = createFramebuffer(gl, tex_C);
     const outputFBO = createFramebuffer(gl, tex_OUT);
     const canvasBg = createTextCanvas(
-			RES.x,
-			RES.y,
-      'MSc Creative Computing Graduates'
+      RES.x,
+      RES.y,
+      'MSc Creative Computing\nGraduates',
+      32
     );
     const textBackground = createTextureFromHTMLElement(gl, canvasBg);
-		const kernelData = new Uint8Array(
-				[0,  8,  2,  10,  12, 4,  14, 6,  3,  11, 1,  9,  15, 7,  13, 5])
-			.map(k => Math.floor((k/16) * 255));
-		const kernelTex = createTexture(gl, 4, 4, kernelData);
+    const kernelData = new Uint8Array([
+      0,
+      8,
+      2,
+      10,
+      12,
+      4,
+      14,
+      6,
+      3,
+      11,
+      1,
+      9,
+      15,
+      7,
+      13,
+      5,
+    ]).map((k) => Math.floor((k / 16) * 255));
+    const kernelTex = createTexture(gl, 4, 4, kernelData);
 
     let mouse = {
       x: 0,
@@ -186,27 +206,27 @@ const Canvas = () => {
       },
       textures: [tex_A, tex_B, tex_C],
       background: textBackground,
-			kernel: kernelTex,
-			outputTex: tex_OUT,
-			fbo: {
-				ripple: rippleFBO,
-				output: outputFBO,
-			},
+      kernel: kernelTex,
+      outputTex: tex_OUT,
+      fbo: {
+        ripple: rippleFBO,
+        output: outputFBO,
+      },
       u: {
-				// Ripple Uniforms
+        // Ripple Uniforms
         prevTex: gl.getUniformLocation(rippleProg, 'u_prevTex'),
         currentTex: gl.getUniformLocation(rippleProg, 'u_currentTex'),
         resolution: gl.getUniformLocation(rippleProg, 'u_resolution'),
         mouse: gl.getUniformLocation(rippleProg, 'u_mouse'),
         frame: gl.getUniformLocation(rippleProg, 'u_frame'),
-				// Dither Uniforms 
+        // Dither Uniforms
         heightMap: gl.getUniformLocation(ditherProg, 'u_heightMap'),
         background: gl.getUniformLocation(ditherProg, 'u_background'),
         resolutionDither: gl.getUniformLocation(ditherProg, 'u_resolution'),
-				kernel:  gl.getUniformLocation(ditherProg, 'u_kernel'),
-				// Output Uniforms 
+        kernel: gl.getUniformLocation(ditherProg, 'u_kernel'),
+        // Output Uniforms
         resolutionOut: gl.getUniformLocation(outputProg, 'u_resolution'),
-				outputTex: gl.getUniformLocation(outputProg, 'u_texture'),
+        outputTex: gl.getUniformLocation(outputProg, 'u_texture'),
       },
     };
 
