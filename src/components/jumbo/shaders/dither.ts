@@ -17,21 +17,24 @@ export const dither_fs = `#version 100
   uniform sampler2D u_heightMap;
   uniform sampler2D u_background;
   uniform vec2 u_resolution;
-
   uniform sampler2D u_kernel;
 
-  const vec2 half_texel = vec2(1.0 / 4.0);
+  const vec2 half_texel = vec2(1.0 / 8.0);
 
   float dither(float c) {
     float closestColor = step(0.5, c);
     float secondClosestColor = 1.0 - closestColor;
-    float d = texture2D(u_kernel, mod(gl_FragCoord.xy, vec2(4.0)) + half_texel).r;
+    vec2 offset = mod(gl_FragCoord.xy, 4.0) / 4.0;
+    float d = texture2D(u_kernel, offset + half_texel).r;
     float dd = abs(closestColor - c);
     return (dd < d) ? closestColor : secondClosestColor;
   }
 
-  void main(){
+  float brightness(vec3 c){
+    return 0.2126*c.r + 0.7152*c.g + 0.0722*c.b;
+  }
 
+  void main(){
     vec3 blue = vec3(0.243, 0.0039, 1.0);
 
     vec2 offset = 1.0/u_resolution;
@@ -50,10 +53,10 @@ export const dither_fs = `#version 100
 
     vec3 combined_col = tmp_col + ripple_col;
 
-    float bright = 0.2126*combined_col.r + 0.7152*combined_col.g + 0.0722*combined_col.b;
+    float bright = brightness(combined_col);
     bright *= 0.8;
     gl_FragColor = mix(vec4(1.0), vec4(blue, 1.0), dither(bright));
 
-    //gl_FragColor = vec4(vec3(dither(bright)), 1.0);
+    //gl_FragColor = vec4(vec3(dither(brightness(vec3(fract(v_texcoord*2.0), 1.0)))), 1.0);
   }
 `;
