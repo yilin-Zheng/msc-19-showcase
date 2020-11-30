@@ -53,12 +53,11 @@ const Jumbo = () => {
         ref={wrapper}
       >
         <Canvas />
-
       </HoverWrapper>
     </>
   );
 };
-        /*
+/*
         <Title className='text-center mx-1'>
           MSc Creative Computing Graduates
         </Title>
