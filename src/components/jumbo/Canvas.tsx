@@ -154,7 +154,7 @@ const Canvas = () => {
     function handleMouse(e) {
       clearTimeout(timeout);
       canDraw = true;
-      const deviceScale = SCALE * deviceRatio;
+      const deviceScale = SCALE / deviceRatio;
       const rect = canvas.getBoundingClientRect();
       mouse = {
         x: (e.clientX - rect.left) / deviceScale,
@@ -170,7 +170,7 @@ const Canvas = () => {
       const touch = e.touches[0];
       clearTimeout(timeout);
       canDraw = true;
-      const deviceScale = SCALE * deviceRatio;
+      const deviceScale = SCALE / deviceRatio;
       const rect = canvas.getBoundingClientRect();
       mouse = {
         x: (touch.clientX - rect.left) / deviceScale,
