@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import {
   createProgram,
@@ -93,7 +93,7 @@ const Canvas = () => {
     const tex_B = createTexture(gl, RES.x, RES.y, black);
     const tex_C = createTexture(gl, RES.x, RES.y);
     const fbo = createFramebuffer(gl, tex_C);
-		const canvasBg = createTextCanvas(gl.canvas.width, gl.canvas.height, "SOME TEXT");
+		const canvasBg = createTextCanvas(gl.canvas.width, gl.canvas.height, "MSc Creative Computing Graduates");
 		const textBackground = createTextureFromHTMLElement(gl, canvasBg);
 
     let mouse = {
@@ -180,7 +180,7 @@ const Canvas = () => {
       }
       animationFrameId = window.requestAnimationFrame(render);
     };
-    render();
+		render();
 
     return () => {
       window.cancelAnimationFrame(animationFrameId);

@@ -47,7 +47,6 @@ function createTextureFromHTMLElement(gl, element){
     gl.UNSIGNED_BYTE,
     element,
   );
-  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -55,35 +54,22 @@ function createTextureFromHTMLElement(gl, element){
   return t;
 }
 
-function createTextCanvas(w, h, text) {
+function createTextCanvas(w, h, text, theme) {
   const ctx = document.createElement('canvas').getContext('2d');
   ctx.canvas.width = w;
   ctx.canvas.height = h;
 
-  const lineWidth = 100;
-  const count = h / lineWidth;
-  const step = lineWidth * 2;
-
-  ctx.fillStyle = '#ddd';
+  ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, w, h);
 
-  ctx.fillStyle = '#666';
-  ctx.save();
-  ctx.rotate(-0.785);
-  for (let i = 0; i < count; i++) {
-    ctx.fillRect(-w, i * step, w * 3, lineWidth);
-  }
-  ctx.restore();
-
-  ctx.font = `${Math.floor(h * 0.33)}px sans-serif`;
+  ctx.font = `${Math.floor(h * 0.1)}px sans-serif`;
   ctx.fontWeight = 1000;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.save();
   ctx.scale(1, -1);
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = 'white';
   ctx.fillText(text, w / 2, -h / 2);
-  ctx.restore();
   return ctx.canvas;
 }
 

@@ -22,6 +22,8 @@ export const out_fs = `#version 100
 
   void main(){
 
+    vec3 blue = vec3(0.243, 0.0039, 1.0);
+
   #if TEXTURE == 0
 
     vec2 offset = 1.0/u_resolution;
@@ -31,11 +33,18 @@ export const out_fs = `#version 100
     float d = texture2D(u_heightMap, v_texcoord+offset.yx).x;
     
     vec3 grad = normalize(vec3(c - b, d - a, 1.0));
-    vec4 tmp_col = texture2D(u_background, gl_FragCoord.xy/u_resolution + grad.xy*0.35);
-    vec3 light = normalize(vec3(0.2, -0.5, 0.7));
-    float diffuse = dot(grad, light);
-    float spec = pow(max(0.0, -reflect(light, grad).z), 32.0);
-    gl_FragColor = mix(tmp_col, vec4(0.7, 0.8, 1.0, 1.0), 0.25)*max(diffuse, 0.0) + spec;
+    vec2 pix = (gl_FragCoord.xy/u_resolution);
+    vec3 tmp_col = texture2D(u_background, pix + grad.xy*0.35).rgb;
+
+		float h = texture2D(u_heightMap, v_texcoord).r;
+		float sh = 1.35 - h*2.0;
+    vec3 ripple_col = 1.0 - vec3(exp(pow(sh-.75,2.)*-10.), exp(pow(sh-.50,2.)*-20.), exp(pow(sh-.25,2.)*-10.));
+
+    vec3 combined_col = tmp_col + ripple_col;
+
+    float bright = 0.2126*combined_col.r + 0.7152*combined_col.g + 0.0722*combined_col.b;
+    bright *= 0.8;
+    gl_FragColor = mix(vec4(blue, 1.0), vec4(1.0), step(0.6, bright));
 
   #elif TEXTURE == 1
 
@@ -51,7 +60,7 @@ export const out_fs = `#version 100
     vec3 col = vec3(exp(pow(sh-.75,2.)*-10.), exp(pow(sh-.50,2.)*-20.), exp(pow(sh-.25,2.)*-10.));
     //float bright = 0.2126*col.r + 0.7152*col.g + 0.0722*col.b;
     float bright = 0.3333 * col.r + col.g + col.b;
-    vec3 thresh = bright > 0.7 ? vec3(0.243, 0.0039, 1.0) : vec3(1.0);
+    vec3 thresh = bright > 0.7 ? blue : vec3(1.0);
     gl_FragColor = vec4(thresh, 1.0);
 
   #else

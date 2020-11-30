@@ -54,12 +54,14 @@ const Jumbo = () => {
       >
         <Canvas />
 
-        <Title className='text-center mx-1'>
-          MSc Creative Computing Graduates
-        </Title>
       </HoverWrapper>
     </>
   );
 };
+        /*
+        <Title className='text-center mx-1'>
+          MSc Creative Computing Graduates
+        </Title>
+        */
 
 export default Jumbo;
