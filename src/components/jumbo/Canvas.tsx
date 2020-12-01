@@ -5,10 +5,11 @@ import {
   createTexture,
   setupVertexAttribs,
   createFramebuffer,
-  createTextCanvas,
   createTextureFromHTMLElement,
   resize,
 } from './utils';
+import { createTextCanvas } from './background';
+import kernelData from './kernel';
 import { water_vs, water_fs } from './shaders/water';
 import { dither_vs, dither_fs } from './shaders/dither';
 import { out_vs, out_fs } from './shaders/out';
@@ -89,58 +90,85 @@ const Canvas = () => {
     const canvas = canvasRef.current;
     const gl = canvas.getContext('webgl');
     const deviceRatio = resize(canvas);
-    // retina support
-    //canvas.width = window.innerWidth;
-    //canvas.height = window.innerHeight;
-    //context.scale(2, 2);
-
     let shuffle = 0;
     let frameCount = 0;
     let animationFrameId;
-
-    const SCALE = 4;
-    const RES = {
-      x: Math.floor(canvas.width / SCALE),
-      y: Math.floor(canvas.height / SCALE),
-    };
-
     const rippleProg = createProgram(gl, water_vs, water_fs);
     const ditherProg = createProgram(gl, dither_vs, dither_fs);
     const outputProg = createProgram(gl, out_vs, out_fs);
+    const SCALE = 4;
+    let RES;
 
-    const black = new Uint8Array(RES.x * RES.y * 4).fill(128);
-    const tex_A = createTexture(gl, RES.x, RES.y, black);
-    const tex_B = createTexture(gl, RES.x, RES.y, black);
-    const tex_C = createTexture(gl, RES.x, RES.y);
-    const tex_OUT = createTexture(gl, RES.x, RES.y);
-    const rippleFBO = createFramebuffer(gl, tex_C);
-    const outputFBO = createFramebuffer(gl, tex_OUT);
-    const canvasBg = createTextCanvas(
-      RES.x,
-      RES.y,
-      'MSc Creative Computing\nGraduates',
-      32
-    );
-    const textBackground = createTextureFromHTMLElement(gl, canvasBg);
-    const kernelData = new Uint8Array([
-      0,  0, 0, 16,
-      8, 0, 0, 16,
-      2, 0, 0, 16,
-      10, 0, 0, 16,
-      12, 0, 0, 16,
-      4, 0, 0, 16,
-      14, 0, 0, 16,
-      6, 0, 0, 16,
-      3, 0, 0, 16,
-      11, 0, 0, 16,
-      1, 0, 0, 16,
-      9, 0, 0, 16,
-      15, 0, 0, 16,
-      7, 0, 0, 16,
-      13, 0, 0, 16,
-      5,  0, 0, 16,
-    ]).map((k) => Math.floor((k / 16) * 255));
-    const kernelTex = createTexture(gl, 4, 4, kernelData);
+    const init = () => {
+      RES = {
+        x: Math.floor(canvas.width / SCALE),
+        y: Math.floor(canvas.height / SCALE),
+      };
+
+      const black = new Uint8Array(RES.x * RES.y * 4).fill(128);
+      const tex_A = createTexture(gl, RES.x, RES.y, black);
+      const tex_B = createTexture(gl, RES.x, RES.y, black);
+      const tex_C = createTexture(gl, RES.x, RES.y);
+      const tex_OUT = createTexture(gl, RES.x, RES.y);
+      const rippleFBO = createFramebuffer(gl, tex_C);
+      const outputFBO = createFramebuffer(gl, tex_OUT);
+      const canvasBg = createTextCanvas(
+          RES.x,
+          RES.y,
+          'MSc Creative Computing Graduates'
+        );
+      const textBackground = createTextureFromHTMLElement(gl, canvasBg);
+
+      const kernelTex = createTexture(gl, 4, 4, kernelData);
+      const program = {
+        ripple: {
+          prog: rippleProg,
+          w: RES.x,
+          h: RES.y,
+        },
+        dither: {
+          prog: ditherProg,
+          w: RES.x,
+          h: RES.y,
+        },
+        output: {
+          prog: outputProg,
+          w: canvas.width,
+          h: canvas.height,
+        },
+        textures: [tex_A, tex_B, tex_C],
+        background: textBackground,
+        kernel: kernelTex,
+        outputTex: tex_OUT,
+        fbo: {
+          ripple: rippleFBO,
+          output: outputFBO,
+        },
+        u: {
+          // Ripple Uniforms
+          prevTex: gl.getUniformLocation(rippleProg, 'u_prevTex'),
+          currentTex: gl.getUniformLocation(rippleProg, 'u_currentTex'),
+          resolution: gl.getUniformLocation(rippleProg, 'u_resolution'),
+          mouse: gl.getUniformLocation(rippleProg, 'u_mouse'),
+          frame: gl.getUniformLocation(rippleProg, 'u_frame'),
+          // Dither Uniforms
+          heightMap: gl.getUniformLocation(ditherProg, 'u_heightMap'),
+          background: gl.getUniformLocation(ditherProg, 'u_background'),
+          resolutionDither: gl.getUniformLocation(ditherProg, 'u_resolution'),
+          kernel: gl.getUniformLocation(ditherProg, 'u_kernel'),
+          // Output Uniforms
+          outputTex: gl.getUniformLocation(outputProg, 'u_texture'),
+        },
+      };
+
+      setupVertexAttribs(gl, program.ripple.prog);
+      setupVertexAttribs(gl, program.dither.prog);
+      setupVertexAttribs(gl, program.output.prog);
+
+      return program;
+    }
+
+    let program = init();
 
     let mouse = {
       x: 0,
@@ -150,7 +178,6 @@ const Canvas = () => {
     let canDraw = false;
 
     let timeout;
-
     function handleMouse(e) {
       clearTimeout(timeout);
       canDraw = true;
@@ -186,52 +213,11 @@ const Canvas = () => {
     canvas.addEventListener('mousemove', handleMouse, false);
     canvas.addEventListener('touchstart', handleTouch, false);
     canvas.addEventListener('touchmove', handleTouch, false);
-    window.addEventListener('resize', () => resize(canvas), false);
+    window.addEventListener('resize', () => {
+      program = init();
+      resize(canvas);
+    }, false);
 
-    const program = {
-      ripple: {
-        prog: rippleProg,
-        w: RES.x,
-        h: RES.y,
-      },
-      dither: {
-        prog: ditherProg,
-        w: RES.x,
-        h: RES.y,
-      },
-      output: {
-        prog: outputProg,
-        w: canvas.width,
-        h: canvas.height,
-      },
-      textures: [tex_A, tex_B, tex_C],
-      background: textBackground,
-      kernel: kernelTex,
-      outputTex: tex_OUT,
-      fbo: {
-        ripple: rippleFBO,
-        output: outputFBO,
-      },
-      u: {
-        // Ripple Uniforms
-        prevTex: gl.getUniformLocation(rippleProg, 'u_prevTex'),
-        currentTex: gl.getUniformLocation(rippleProg, 'u_currentTex'),
-        resolution: gl.getUniformLocation(rippleProg, 'u_resolution'),
-        mouse: gl.getUniformLocation(rippleProg, 'u_mouse'),
-        frame: gl.getUniformLocation(rippleProg, 'u_frame'),
-        // Dither Uniforms
-        heightMap: gl.getUniformLocation(ditherProg, 'u_heightMap'),
-        background: gl.getUniformLocation(ditherProg, 'u_background'),
-        resolutionDither: gl.getUniformLocation(ditherProg, 'u_resolution'),
-        kernel: gl.getUniformLocation(ditherProg, 'u_kernel'),
-        // Output Uniforms
-        outputTex: gl.getUniformLocation(outputProg, 'u_texture'),
-      },
-    };
-
-    setupVertexAttribs(gl, program.ripple.prog);
-    setupVertexAttribs(gl, program.dither.prog);
-    setupVertexAttribs(gl, program.output.prog);
 
     const render = () => {
       if (canDraw) {

@@ -35,7 +35,7 @@ function createTexture(gl, w, h, data = null) {
   return t;
 }
 
-function createSingleChannelTexture(gl, w, h, data=null) {
+function createSingleChannelTexture(gl, w, h, data = null) {
   const t = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, t);
   gl.texImage2D(
@@ -66,49 +66,6 @@ function createTextureFromHTMLElement(gl, element) {
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
   return t;
-}
-
-function createTextCanvas(w, h, text, textHeight) {
-  const ctx = document.createElement('canvas').getContext('2d');
-  ctx.canvas.width = w;
-  ctx.canvas.height = h;
-  ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, w, h);
-
-  ctx.font = textHeight + 'px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillStyle = 'white';
-
-  const splitText = text.split('\n');
-
-  const totalHeight = splitText.length * textHeight;
-  for(let i=0; i<splitText.length; i++){
-    const y_offset = (i*textHeight)-totalHeight+textHeight;
-    ctx.fillText(splitText[i], w/2, (h/2) + y_offset);
-  }
-
-  return ctx.canvas;
-}
-
-function createVAO(gl, program, attrs) {
-  const vao = gl.createVertexArray();
-  gl.bindVertexArray(vao);
-
-  for (const name in attrs) {
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(
-      gl.ARRAY_BUFFER,
-      new Float32Array(attrs[name]),
-      gl.STATIC_DRAW
-    );
-    const location = gl.getAttribLocation(program, name);
-    gl.enableVertexAttribArray(location);
-    gl.vertexAttribPointer(location, 2, gl.FLOAT, false, 0, 0);
-  }
-
-  return vao;
 }
 
 function setupVertexAttribs(gl, program) {
@@ -164,10 +121,8 @@ function resize(canvas) {
 export {
   createProgram,
   createTexture,
-  createTextCanvas,
   createTextureFromHTMLElement,
   createSingleChannelTexture,
-  createVAO,
   setupVertexAttribs,
   createFramebuffer,
   resize,
