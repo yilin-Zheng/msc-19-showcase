@@ -96,7 +96,7 @@ const Canvas = () => {
     const rippleProg = createProgram(gl, water_vs, water_fs);
     const ditherProg = createProgram(gl, dither_vs, dither_fs);
     const outputProg = createProgram(gl, out_vs, out_fs);
-    const SCALE = 4;
+    const SCALE = 8;
     let RES;
 
     const init = () => {
@@ -113,10 +113,10 @@ const Canvas = () => {
       const rippleFBO = createFramebuffer(gl, tex_C);
       const outputFBO = createFramebuffer(gl, tex_OUT);
       const canvasBg = createTextCanvas(
-          RES.x,
-          RES.y,
-          'MSc Creative Computing Graduates'
-        );
+        RES.x,
+        RES.y,
+        'MSc Creative Computing Graduates'
+      );
       const textBackground = createTextureFromHTMLElement(gl, canvasBg);
 
       const kernelTex = createTexture(gl, 4, 4, kernelData);
@@ -166,7 +166,7 @@ const Canvas = () => {
       setupVertexAttribs(gl, program.output.prog);
 
       return program;
-    }
+    };
 
     let program = init();
 
@@ -213,11 +213,14 @@ const Canvas = () => {
     canvas.addEventListener('mousemove', handleMouse, false);
     canvas.addEventListener('touchstart', handleTouch, false);
     canvas.addEventListener('touchmove', handleTouch, false);
-    window.addEventListener('resize', () => {
-      program = init();
-      resize(canvas);
-    }, false);
-
+    window.addEventListener(
+      'resize',
+      () => {
+        program = init();
+        resize(canvas);
+      },
+      false
+    );
 
     const render = () => {
       if (canDraw) {

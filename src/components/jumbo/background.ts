@@ -1,8 +1,8 @@
-function getTextHeight(w){
-  if(w > 200) return 32;
-  if(w > 150) return 24;
-  if(w > 100) return 18;
-  if(w > 0) return 12;
+function getTextHeight(w) {
+  if (w > 200) return 32;
+  if (w > 150) return 24;
+  if (w > 100) return 18;
+  if (w > 0) return 12;
 }
 
 function createTextCanvas(w, h, text) {
@@ -46,7 +46,7 @@ function createTextCanvas(w, h, text) {
   /* Recalculated line height based on line length */
   //const linesSortedByLength = lines.sort((a, b) => wordLen(b) - wordLen(a));
   //while(wordLen(linesSortedByLength[0]) < w - 20) {
-    //ctx.font = textHeight++ + 'px sans-serif';
+  //ctx.font = textHeight++ + 'px sans-serif';
   //}
   const totalHeight = lines.length * textHeight;
   const yOffset = (h - totalHeight) / 2;
