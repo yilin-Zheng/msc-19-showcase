@@ -1,9 +1,8 @@
 function getTextHeight(w){
-  console.log(w);
   if(w > 200) return 32;
-  if(w > 150) return 28;
-  if(w > 100) return 15;
-  if(w > 0) return 14;
+  if(w > 150) return 24;
+  if(w > 100) return 18;
+  if(w > 0) return 12;
 }
 
 function createTextCanvas(w, h, text) {
