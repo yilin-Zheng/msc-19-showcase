@@ -89,7 +89,6 @@ const Canvas = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const gl = canvas.getContext('webgl');
-    const deviceRatio = resize(canvas);
     let shuffle = 0;
     let frameCount = 0;
     let animationFrameId;
@@ -97,9 +96,10 @@ const Canvas = () => {
     const ditherProg = createProgram(gl, dither_vs, dither_fs);
     const outputProg = createProgram(gl, out_vs, out_fs);
     const SCALE = 4;
-    let RES;
+    let RES, deviceRatio;
 
     const init = () => {
+      deviceRatio = resize(canvas);
       RES = {
         x: Math.floor(canvas.width / SCALE),
         y: Math.floor(canvas.height / SCALE),
@@ -215,7 +215,7 @@ const Canvas = () => {
     canvas.addEventListener('touchmove', handleTouch, false);
     window.addEventListener('resize', () => {
       program = init();
-      resize(canvas);
+      deviceRatio = resize(canvas);
     }, false);
 
 
