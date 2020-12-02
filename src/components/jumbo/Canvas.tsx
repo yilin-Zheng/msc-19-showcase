@@ -90,18 +90,18 @@ const Canvas = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const gl = canvas.getContext('webgl');
-    let shuffle = 0;
-    let frameCount = 0;
-    let animationFrameId;
     const rippleProg = createProgram(gl, water_vs, water_fs);
     const ditherProg = createProgram(gl, dither_vs, dither_fs);
     const outputProg = createProgram(gl, out_vs, out_fs);
-    let SCALE = 4;
-    let RES, deviceRatio;
+    const BASE_SCALE = 4;
+    let RES, SCALE, deviceRatio;
+    let animationFrameId, shuffle, frameCount;
 
     const init = () => {
+      shuffle = 0;
+      frameCount = 0;
       deviceRatio = resize(canvas);
-      SCALE = Math.floor(SCALE * deviceRatio);
+      SCALE = Math.floor(BASE_SCALE * deviceRatio);
       RES = {
         x: Math.floor(canvas.width / SCALE),
         y: Math.floor(canvas.height / SCALE),
@@ -220,7 +220,6 @@ const Canvas = () => {
       'resize',
       () => {
         program = init();
-        deviceRatio = resize(canvas);
       },
       false
     );

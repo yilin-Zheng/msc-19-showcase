@@ -1,8 +1,8 @@
 function getTextHeight(w) {
   if (w > 200) return 42;
   if (w > 150) return 28;
-  if (w > 100) return 20;
-  if (w > 0) return 12;
+  if (w > 100) return 24;
+  if (w > 0) return 18;
 }
 
 function createTextCanvas(w, h, text, font) {
@@ -41,7 +41,7 @@ function createTextCanvas(w, h, text, font) {
   }
 
   let lines = [];
-  generateStringArray(lines, words, Math.max(w, h) - 20);
+  generateStringArray(lines, words, w - 40);
 
   /* Recalculated line height based on line length */
   //const linesSortedByLength = lines.sort((a, b) => wordLen(b) - wordLen(a));
