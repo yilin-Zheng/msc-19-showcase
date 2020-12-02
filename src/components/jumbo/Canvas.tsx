@@ -95,7 +95,7 @@ const Canvas = () => {
     const rippleProg = createProgram(gl, water_vs, water_fs);
     const ditherProg = createProgram(gl, dither_vs, dither_fs);
     const outputProg = createProgram(gl, out_vs, out_fs);
-    const SCALE = 4;
+    let SCALE = 4;
     let RES, deviceRatio;
 
     const init = () => {
@@ -104,6 +104,8 @@ const Canvas = () => {
         x: Math.floor(canvas.width / SCALE),
         y: Math.floor(canvas.height / SCALE),
       };
+
+      SCALE = Math.floor(SCALE * deviceRatio);
 
       const black = new Uint8Array(RES.x * RES.y * 4).fill(128);
       const tex_A = createTexture(gl, RES.x, RES.y, black);
