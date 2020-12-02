@@ -1,5 +1,5 @@
 function getTextHeight(w) {
-  if (w > 200) return 42;
+  if (w > 200) return 32;
   if (w > 150) return 24;
   if (w > 100) return 18;
   if (w > 0) return 12;
