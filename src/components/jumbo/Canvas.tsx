@@ -100,12 +100,11 @@ const Canvas = () => {
 
     const init = () => {
       deviceRatio = resize(canvas);
+      SCALE = Math.floor(SCALE * deviceRatio);
       RES = {
         x: Math.floor(canvas.width / SCALE),
         y: Math.floor(canvas.height / SCALE),
       };
-
-      SCALE = Math.floor(SCALE * deviceRatio);
 
       const black = new Uint8Array(RES.x * RES.y * 4).fill(128);
       const tex_A = createTexture(gl, RES.x, RES.y, black);
@@ -215,11 +214,14 @@ const Canvas = () => {
     canvas.addEventListener('mousemove', handleMouse, false);
     canvas.addEventListener('touchstart', handleTouch, false);
     canvas.addEventListener('touchmove', handleTouch, false);
-    window.addEventListener('resize', () => {
-      program = init();
-      deviceRatio = resize(canvas);
-    }, false);
-
+    window.addEventListener(
+      'resize',
+      () => {
+        program = init();
+        deviceRatio = resize(canvas);
+      },
+      false
+    );
 
     const render = () => {
       if (canDraw) {
