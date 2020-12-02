@@ -12,6 +12,6 @@ Players can drive a Jeep along a road which takes them through UN history. News 
 
 The news feature game serves as a civic communications tool for investigating the extent to which a videogame is a suitable medium for showing several different types of data and information in an engaging and more interactive way than with other types of media. It also gives the opportunity to research whether it can afford a new perspective on political and social issues.
 
-![UN road-trip](iamge_2.png)
+![UN road-trip](image_2.png)
 
 You can play the game here: https://katbotazz.itch.io/un-road-trip
