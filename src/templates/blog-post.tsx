@@ -15,6 +15,8 @@ const ProjectLink = styled(Link)`
   align-items: center;
   pointer-events: none;
 
+  transition: 0.5s ease transform;
+
   h3 {
     max-width: 15ch;
     pointer-events: all;
@@ -26,12 +28,20 @@ const ProjectLink = styled(Link)`
     `
     right: 0;
     text-align: right;
+    &:hover {
+      transform: translateX(-5px);
+      transition: 0.5s ease transform;
+    }
   `}
 
   ${(props) =>
     props.left &&
     `
     left: 0;
+    &:hover {
+      transform: translateX(5px);
+      transition: 0.5s ease transform;
+    }
   `}
 
    @media (min-width: 768px) {
@@ -44,6 +54,15 @@ const ProjectLink = styled(Link)`
 const MarkdownWrapper = styled.div`
   p {
     margin: 1.5rem 0;
+  }
+
+  a {
+    color: ${(props) => props.theme.black};
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: ${(props) => props.theme.black};
   }
 
   /* make youtube resonsive  */
@@ -72,7 +91,7 @@ export default function BlogPost({ data, pageContext }) {
     : null;
 
   return (
-    <Layout>
+    <Layout hideNavOnScroll>
       <SEO
         title={artist}
         description={excerpt}
@@ -98,7 +117,7 @@ export default function BlogPost({ data, pageContext }) {
         <header className='my-0 my-md-3'>
           <div>
             <h3 className='text-md-center mb-md-0'>{artist}</h3>
-            <h1 className='text-md-center py-0 py-md-3 mb-0'>{title}</h1>
+            <h1 className='text-md-center py-0 py-md-2 mb-0'>{title}</h1>
             <h4 className='text-md-center py-2 py-md-0 mx-md-auto w-75 mx-0'>
               {description}
             </h4>

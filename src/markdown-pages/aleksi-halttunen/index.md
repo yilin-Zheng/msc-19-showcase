@@ -3,7 +3,7 @@ slug: '/aleksi-halttunen'
 artist: 'Aleksi Halttunen'
 title: '4104 frames'
 thumbnail: '4104_1.png'
-description: 'Novel method for video manipulation using deep generative neural networks'
+description: 'Imagining a future in which the role of the machine is that of a camera, paintbrush or chisel'
 ---
 
 _4104 frames_ (2020) is an experimental video exploring nature, architecture and life through the lens of a machine learning algorithm trained only to understand faces. It is an attempt at revealing the inner workings of a traditionally 'black-box' machine learning model. This results in scenes of human faces deteriorating into environments as part of a delirious exploration of the farthest edges of a model’s latent space. A demonstration of a novel use case of generative adversarial networks (GANs) for video manipulation.

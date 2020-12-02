@@ -1,5 +1,6 @@
-import React from 'react';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import { animated, useSpring, config } from 'react-spring';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import SocialLinks from '../components/SocialMediaLinks';
@@ -25,7 +26,11 @@ const pressura = `"GT Pressura", "HelveticaNeue-Light", "Helvetica Neue Light", 
 
 const GlobalStyle = createGlobalStyle`
   ::selection {
-    color: ${(props) => props.theme.black};
+    background: rgba(0,0,0,0);
+    color: ${(props) => props.theme.blue};
+  }
+
+  html {
     background: ${(props) => props.theme.blue};
   }
 
@@ -43,19 +48,19 @@ const GlobalStyle = createGlobalStyle`
     ${typeBase}
       color: ${(props) => props.theme.black};
       text-decoration: none;
-      transition: 0.2s ease-in color;
+      transition: 0.15s ease-in color;
   }
 
   a:hover {
     color: ${(props) => props.theme.blue};
       text-decoration: none;
-      transition: 0.2s ease color;
+      transition: 0.15s ease color;
   }
 
   h1 {
     ${typeBase}
     font-family: ${helvetica};
-      letter-spacing: -0.05rem;
+      letter-spacing: -0.1rem;
       line-height: 1;
       font-weight: 800;
       font-size: 5.3125rem;  
@@ -108,7 +113,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${helvetica};
     letter-spacing: 0.015em;
     word-spacing: 0.001em;
-    font-size: 1.125rem;
+    font-size: 1.15rem;
     font-weight: 500;
     line-height: 1.45;
 
@@ -133,6 +138,8 @@ const GlobalStyle = createGlobalStyle`
 
   blockquote p {
     ${typeBase}
+    letter-spacing: -0.02rem;
+    line-height: 1.3;
     font-size: 1.875rem;
     padding-left: 2.5rem;
     font-family: ${helvetica};
@@ -145,16 +152,50 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Layout = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <div className='mx-2 mx-md-3 my-5 my-md-6'>
+const NavWrapper = styled(animated.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+`;
+
+const Layout = ({ children, hideNavOnScroll }) => {
+  const [scrolling, setScrolling] = useState(false);
+
+  function handleScroll() {
+    if (window.pageYOffset > window.innerHeight * 0.5) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, false);
+    return () => window.removeEventListener('scrolling', handleScroll, false);
+  });
+
+  const scrollAnim = useSpring({
+    transform:
+      hideNavOnScroll && scrolling ? 'translateY(-200px)' : 'translateY(0px)',
+    config: config.default,
+  });
+
+  return (
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Nav />
-      <main>{children}</main>
-      <SocialLinks />
-    </div>
-    <Footer />
-  </ThemeProvider>
-);
+      <div className='mx-2 mx-md-3 py-5 py-md-5'>
+        <NavWrapper style={scrollAnim}>
+          <Nav />
+        </NavWrapper>
+
+        <main>{children}</main>
+        <SocialLinks />
+      </div>
+      <Footer />
+    </ThemeProvider>
+  );
+};
 
 export default Layout;
