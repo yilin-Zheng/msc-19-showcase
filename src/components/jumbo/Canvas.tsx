@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useContext } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import {
   createProgram,
   createTexture,
@@ -25,6 +25,7 @@ const StyledCanvas = styled.canvas`
 
 const Canvas = () => {
   const canvasRef = useRef(null);
+  const { titleFont } = useContext(ThemeContext);
 
   function draw(gl, shuffle, frameCount, mouse, program) {
     let a = shuffle % 3;
@@ -116,7 +117,8 @@ const Canvas = () => {
       const canvasBg = createTextCanvas(
         RES.x,
         RES.y,
-        'MSc Creative Computing Graduates'
+        'MSc Creative Computing Graduates',
+        titleFont,
       );
       const textBackground = createTextureFromHTMLElement(gl, canvasBg);
 

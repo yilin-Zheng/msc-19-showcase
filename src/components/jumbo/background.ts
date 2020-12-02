@@ -5,14 +5,14 @@ function getTextHeight(w) {
   if (w > 0) return 12;
 }
 
-function createTextCanvas(w, h, text) {
+function createTextCanvas(w, h, text, font) {
   const ctx = document.createElement('canvas').getContext('2d');
   ctx.canvas.width = w;
   ctx.canvas.height = h;
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, w, h);
   let textHeight = getTextHeight(w);
-  ctx.font = textHeight + 'px sans-serif';
+  ctx.font = `${textHeight}px ${font}`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillStyle = 'white';

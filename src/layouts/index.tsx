@@ -6,13 +6,6 @@ import SocialLinks from '../components/SocialMediaLinks';
 import './custom.scss';
 import './fonts.css';
 
-const theme = {
-  white: '#FFFFFF',
-  grey: '#F8F7F5',
-  black: '#000000',
-  blue: '#3E01FF',
-};
-
 const typeBase = `
   font-feature-settings:"kern" 1;
   font-kerning: normal;
@@ -22,6 +15,15 @@ const typeBase = `
 
 const helvetica = `"Suisse Intl", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif`;
 const pressura = `"GT Pressura", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif`;
+
+const theme = {
+  white: '#FFFFFF',
+  grey: '#F8F7F5',
+  black: '#000000',
+  blue: '#3E01FF',
+  titleFont: helvetica,
+};
+
 
 const GlobalStyle = createGlobalStyle`
   ::selection {
