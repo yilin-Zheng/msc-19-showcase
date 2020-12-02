@@ -20,8 +20,8 @@ export const water_fs = `#version 100
   uniform vec2 u_resolution;
   uniform vec3 u_mouse;
 
-  const float dampening = 0.9;
-  const float sparkle = 0.005;
+  const float dampening = 0.95;
+  const float sparkle = 0.4;
 
   float getHeight(vec2 p){
     vec2 offset = vec2(1.0 / u_resolution.x, 0.0);

@@ -115,10 +115,10 @@ const Canvas = () => {
       const rippleFBO = createFramebuffer(gl, tex_C);
       const outputFBO = createFramebuffer(gl, tex_OUT);
       const canvasBg = createTextCanvas(
-          RES.x,
-          RES.y,
-          'MSc Creative Computing Graduates'
-        );
+        RES.x,
+        RES.y,
+        'MSc Creative Computing Graduates'
+      );
       const textBackground = createTextureFromHTMLElement(gl, canvasBg);
 
       const kernelTex = createTexture(gl, 4, 4, kernelData);
@@ -168,7 +168,7 @@ const Canvas = () => {
       setupVertexAttribs(gl, program.output.prog);
 
       return program;
-    }
+    };
 
     let program = init();
 
