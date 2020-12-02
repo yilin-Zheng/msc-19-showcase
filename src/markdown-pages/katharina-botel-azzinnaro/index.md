@@ -1,9 +1,9 @@
 ---
-slug: "/katharina-botel-azzinnaro"
-artist: "Katharina Botel-Azzinnaro"
-title: "UN road-trip"
-thumbnail: "image.png"
-description: "A news feature videogame"
+slug: '/katharina-botel-azzinnaro'
+artist: 'Katharina Botel-Azzinnaro'
+title: 'UN road-trip'
+thumbnail: 'image.png'
+description: 'A news feature videogame'
 ---
 
 *UN road-trip*  is an attempt to demonstrate a merger of the principles of newsgames and characteristics of news features, creating a proposed new subtype: news feature games. 
@@ -14,4 +14,4 @@ The news feature game serves as a civic communications tool for investigating th
 
 ![UN road-trip](image_2.png)
 
-You can play the game here: https://katbotazz.itch.io/un-road-trip
+#### Play the game here: https://katbotazz.itch.io/un-road-trip

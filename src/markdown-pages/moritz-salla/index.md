@@ -2,7 +2,7 @@
 slug: '/moritz-salla'
 artist: 'Moritz Salla'
 title: 'The Healing Orb'
-thumbnail: './render11.jpg'
+thumbnail: './render4.jpg'
 description: 'A Smart Lamp for Digital Wellbeing'
 ---
 
@@ -25,6 +25,8 @@ The Healing Orb is an exploration into how IoT can help us create digital wellbe
 ### Technical Setup
 
 ![Technical setup](illu1.png)
+
+![Technical setup 2](setup.png)
 
 ![Data flow](illu2.png)
 
