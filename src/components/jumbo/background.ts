@@ -57,7 +57,7 @@ function createTextCanvas(w, h, text, fonts) {
   }
 
   ctx.font = `800 1rem ${fonts.arrow}`;
-  // ctx.fillText('↓', w * 0.5, h * 0.85);
+  ctx.fillText('↓', w * 0.5, h * 0.85);
 
   return ctx.canvas;
 }
