@@ -19,7 +19,7 @@ export const dither_fs = `#version 100
   uniform vec2 u_resolution;
   uniform sampler2D u_kernel;
 
-  const vec3 blue = vec3(0.243, 0.0039, 1.0);
+  const vec3 blue = vec3(0., 0.3411, 1.0);
   const float ditherOffset = 2.0;
 
   float dither(float c) {

@@ -21,7 +21,7 @@ const theme = {
   white: '#FFFFFF',
   grey: '#F8F7F5',
   black: '#000000',
-  blue: '#3E01FF',
+  blue: '#0057FF',
   titleFont: helvetica,
 };
 
