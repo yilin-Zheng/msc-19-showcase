@@ -20,8 +20,10 @@ export const water_fs = `#version 100
   uniform vec2 u_resolution;
   uniform vec3 u_mouse;
 
-  const float dampening = 0.95;
-  const float raindropRate = 0.02;
+  const float dampening = 0.97;
+  const float raindropRate = 0.03;
+  const float cutoff = 0.0; // 0.0 - 1.0
+  const float waveSize = 1.0; // 0.0 - 1.0
 
   float getHeight(vec2 p){
     vec2 offset = vec2(1.0 / u_resolution.x, 0.0);
@@ -38,19 +40,21 @@ export const water_fs = `#version 100
 
     else {
       float t = u_frame * raindropRate;
-      vec2 pos = fract(floor(t)*vec2(0.456665,0.708618))*u_resolution.xy;
+      vec2 pos = fract(floor(t) * vec2(0.456665, 0.708618)) * u_resolution.xy;
       float amp = 1.0 - step(0.05, fract(t));
-      s = -amp * smoothstep(2.5, 0.5, length(pos - gl_FragCoord.xy));
+      s = -amp * smoothstep(2.0, 0.5, length(pos - gl_FragCoord.xy));
     }
 
     s -= (texture2D(u_currentTex, p).r - 0.5) * 2.0;
     s += (a + b + c + d - 2.0);
     s *= dampening;
-    s *= min(1.0,(u_frame));
-    return s * 0.5 + 0.5;
+    s *= min(waveSize, u_frame);
+    s = s * .5 + 0.5;
+    return s;
   }
 
   void main(){
-    gl_FragColor = vec4(getHeight(v_texcoord), 0.0, 0.0, 1.0);
+    float r = getHeight(v_texcoord);
+    gl_FragColor = vec4(clamp(r, cutoff, 1.0), 0.0, 0.0, 1.0);
   }
 `;

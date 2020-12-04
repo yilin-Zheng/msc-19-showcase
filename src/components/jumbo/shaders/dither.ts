@@ -51,7 +51,7 @@ export const dither_fs = `#version 100
     vec3 tmp_col = texture2D(u_background, pix + grad.xy*0.05 + depth).rgb;
 
     float h = texture2D(u_heightMap, v_texcoord).r;
-    float sh = 1.35 - h*2.0;
+    float sh = 1.35 - h * 2.0;
     vec3 ripple_col = vec3(exp(pow(sh-.75,2.)*-10.), exp(pow(sh-.50,2.)*-20.), exp(pow(sh-.25,2.)*-10.));
 
     vec3 combined_col = tmp_col + ripple_col;
@@ -59,6 +59,6 @@ export const dither_fs = `#version 100
     float bright = brightness(combined_col);
     gl_FragColor = mix( vec4(blue, 1.0),vec4(1.0), dither(1.0 - bright-.25));
 
-    //gl_FragColor = vec4(tmp_col, 1.0);
+    // gl_FragColor = vec4(tmp_col, 1.0);
   }
 `;
