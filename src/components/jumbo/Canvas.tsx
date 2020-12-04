@@ -179,12 +179,10 @@ const Canvas = () => {
       y: 0,
       z: 0,
     };
-    let canDraw = false;
 
     let timeout;
     function handleMouse(e) {
       clearTimeout(timeout);
-      canDraw = true;
       const deviceScale = SCALE / deviceRatio;
       const rect = canvas.getBoundingClientRect();
       mouse = {
@@ -200,7 +198,6 @@ const Canvas = () => {
     function handleTouch(e) {
       const touch = e.touches[0];
       clearTimeout(timeout);
-      canDraw = true;
       const deviceScale = SCALE / deviceRatio;
       const rect = canvas.getBoundingClientRect();
       mouse = {
@@ -226,11 +223,10 @@ const Canvas = () => {
     );
 
     const render = () => {
-      if (canDraw) {
-        draw(gl, shuffle, frameCount, mouse, program);
-        shuffle += 2;
-        frameCount++;
-      }
+      draw(gl, shuffle, frameCount, mouse, program);
+      shuffle += 2;
+      frameCount++;
+
       animationFrameId = window.requestAnimationFrame(render);
     };
     render();
