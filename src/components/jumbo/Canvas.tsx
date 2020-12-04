@@ -217,7 +217,8 @@ const Canvas = () => {
     window.addEventListener(
       'resize',
       () => {
-        program = init();
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (!isMobile) program = init();
       },
       false
     );
