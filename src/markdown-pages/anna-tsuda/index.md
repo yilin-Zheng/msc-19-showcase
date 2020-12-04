@@ -18,7 +18,7 @@ SWAP is a recipe website that helps you with your plant-based diet cooking. This
 
 ### How did SWAP start?
 
-The initial inspiration is deep-rooted in my personal journey of transitioning to a plant-based diet, after moving in with my sister who has been commited to living plant-based for nearly three years. Despite having learnt the consequences of eating animal products for our environment, the unethical treatment of animals in factory farms, and the many benefits of eating plant-based, I'm still finding it difficult to fully give up on certain products like ice cream. Yes, I am a big icecream fan and yes, I am still going through the gradual shifting process.
+The initial inspiration is deep-rooted in my personal journey of transitioning to a plant-based diet, after moving in with my sister who has been commited to living plant-based for nearly three years. Despite having learnt the consequences of eating animal products for our environment, the unethical treatment of animals in factory farms, and the many benefits of eating plant-based, I'm still finding it difficult to fully give up on certain products like ice cream. Yes, I am a big ice cream fan and yes, I am still going through the gradual shifting process.
 
 Most importantly, seeing myself struggle to immediately give up on animal products raised many questions including: What is it about animal products that makes it so appealing? Right around the same time, I came across a quote by feminist-vegan advocate, Carol J. Adams:
 
@@ -32,4 +32,4 @@ Reading this quote in her book, _The Sexual Politics of Meat_, I saw the need to
 
 ### What is next in line for SWAP?
 
-SWAP is currently at its prototype stage and is limited to viewing recipes. However, I aim to iteratively redesign, implement additional features in the near future and grow this into a community space to support one another with our plant-based diet journies.
+SWAP is currently at its prototype stage and is limited to viewing recipes. However, I aim to iteratively redesign, implement additional features in the near future and grow this into a community space to support one another with our plant-based diet journeys.

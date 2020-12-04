@@ -8,7 +8,7 @@ description: 'If we knew we were about to be exposed to a controversy, would we 
 
 ### Have you gotten your 2 minutes of hate, yet, today?
 
-It was once inconceivable to have a scheduled period of time just to be angry at "the enemy." Now, thought? Entire 24/7 cable channels are devoted to enraging viewers. Whole networks of businesses and political parties exist simply to make people angry or afraid or anxious, and divide them in a useful way. Useful to the parties and businesses doing this division, but harmful to you, me, nature, and seemingly the fabric of reality itself.
+It was once inconceivable to have a scheduled period of time just to be angry at "the enemy." Now, though? Entire 24/7 cable channels are devoted to enraging viewers. Whole networks of businesses and political parties exist simply to make people angry or afraid or anxious, and divide them in a useful way. Useful to the parties and businesses doing this division, but harmful to you, me, nature, and seemingly the fabric of reality itself.
 
 _Controversy Warning_ is a first effort to remind us to avert our gaze from content meant to drag us into an "us vs them" situation. When something is highly controversial, there are people arguing.
 

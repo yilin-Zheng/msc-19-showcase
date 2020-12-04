@@ -14,7 +14,7 @@ Forest Daydream VR is an interactive VR experience that aimed to create emotiona
 
 <br />
 
-The concept of this VR game came from an interactive exhibition called Forest Daydream. Our whole class involved in implementing the exhibition. The exhibition created a rich and dynamic atmosphere by lightings and soundscape. The room was filled with interactive installations, and participants can press the buttons and to different weather states. The music composition by Ben Kelly, who also teaches at our creative computing institute, imitated the feeling as if participants are in the rainforest. The interactive nature of the exhibition attracted a lot of kids playing with it. Also, there were participants sitting and lying in the dome in the centre of the room, to just appreciate the immersive calmness brought by the exhibition.
+The concept of this VR game came from an interactive exhibition called Forest Daydream. Our whole class was involved in implementing the exhibition. The exhibition created a rich and dynamic atmosphere by lightings and soundscape. The room was filled with interactive installations, and participants can press the buttons and to different weather states. The music composition by Ben Kelly, who also teaches at our creative computing institute, imitated the feeling as if participants are in the rainforest. The interactive nature of the exhibition attracted a lot of kids playing with it. Also, there were participants sitting and lying in the dome in the centre of the room, to just appreciate the immersive calmness brought by the exhibition.
 
 ![Exhibition Photo](IMG_20200216_132119.jpg)
 

@@ -6,13 +6,13 @@ thumbnail: './render4.jpg'
 description: 'A Smart Lamp for Digital Wellbeing'
 ---
 
-The introduction of new tools has frequently caused injury to humankind. The agricultural revolution reduced average life expectancy by 50% per cent, causing human teeth to grow crooked and fall out due to the softer, more sugary diet.
+The introduction of new tools has frequently caused injury to humankind. The agricultural revolution reduced average life expectancy by 50%, causing human teeth to grow crooked and fall out due to the softer, more sugary diet.
 
 The internet is a tool. As human brains have evolved very slowly over the last 2000 years, it has been hard for us to catch up on the enormous technological advancements of the 21 century. The blisteringly fast speed of technological evolution, combined with the stigma mental health continues to have in society, makes many of tech's symptoms go unnoticed.
 
 ![Computer generated image of the Healilng Pod in various sizes](render4.jpg)
 
-The Healing Orb is an exploration into how IoT can help us create digital wellbeing. By storing and analysing the content we browse with natural language processing, a branch of machine learning, it can judge the healthiness a user's content. The Healing Orb, a wireless smart lamp in the shape of an orb, visualises health levels by fading between user-defined colours. By flawlessly blending into existing furniture, it provides a less obtrusive interface for self-monitoring.
+The Healing Orb is an exploration into how IoT can help us create digital wellbeing. By storing and analysing the content we browse with natural language processing, a branch of machine learning, it can judge the healthiness of a user's content. The Healing Orb, a wireless smart lamp in the shape of an orb, visualises health levels by fading between user-defined colours. By flawlessly blending into existing furniture, it provides a less obtrusive interface for self-monitoring.
 
 ![The Healing Pod fades between two controllable color values to communicate healthiness](./img1.png)
 

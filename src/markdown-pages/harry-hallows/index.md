@@ -8,7 +8,7 @@ description: 'A game encouraging intervention against sexual harassment'
 
 This is a project that's purpose is to try and understand the mindset of people who act as Bystanders when witnessing Sexual Harassment (Male towards Female) and currently the project is focused from the perspective of trying to understand why other males continue to be Bystanders turning a blind eye to these situations.
 
-The project goes from what is considered a rather mild experience from a social media platform to then escallating further and further as the game progresses.
+The project goes from what is considered a rather mild experience from a social media platform to then escalating further and further as the game progresses.
 
 ![](BystanderShot04.JPG)
 
