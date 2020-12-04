@@ -22,9 +22,11 @@ const theme = {
   grey: '#F8F7F5',
   black: '#000000',
   blue: '#0057FF',
-  titleFont: helvetica,
+  jumboFonts: {
+    title: helvetica,
+    arrow: helvetica,
+  },
 };
-
 
 const GlobalStyle = createGlobalStyle`
   ::selection {

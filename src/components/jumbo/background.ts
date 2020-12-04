@@ -5,14 +5,14 @@ function getTextHeight(w) {
   if (w > 0) return w / 6.5;
 }
 
-function createTextCanvas(w, h, text, font) {
+function createTextCanvas(w, h, text, fonts) {
   const ctx = document.createElement('canvas').getContext('2d');
   ctx.canvas.width = w;
   ctx.canvas.height = h;
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, w, h);
   let textHeight = getTextHeight(w);
-  ctx.font = `800 ${textHeight}px ${font}`;
+  ctx.font = `800 ${textHeight}px ${fonts.title}`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillStyle = 'white';
@@ -34,7 +34,7 @@ function createTextCanvas(w, h, text, font) {
     else if (unused.length == 1) final.push(unused.pop());
     else if (unused.length >= 2) {
       let newLine = [];
-      generateNewLine(newLine, unused, maxLen, wordLen);
+      generateNewLine(newLine, unused, maxLen);
       final.push(newLine.join(' '));
     }
     generateStringArray(final, unused, maxLen);
@@ -55,6 +55,9 @@ function createTextCanvas(w, h, text, font) {
     const lineYOffset = yOffset + i * textHeight;
     ctx.fillText(lines[i], w / 2, lineYOffset);
   }
+
+  ctx.font = `800 1rem ${fonts.arrow}`;
+  ctx.fillText('↓', w * 0.5, h * 0.85);
 
   return ctx.canvas;
 }

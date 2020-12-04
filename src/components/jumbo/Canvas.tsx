@@ -25,7 +25,7 @@ const StyledCanvas = styled.canvas`
 
 const Canvas = () => {
   const canvasRef = useRef(null);
-  const { titleFont } = useContext(ThemeContext);
+  const { jumboFonts } = useContext(ThemeContext);
 
   function draw(gl, shuffle, frameCount, mouse, program) {
     let a = shuffle % 3;
@@ -118,7 +118,7 @@ const Canvas = () => {
         RES.x,
         RES.y,
         'MSc Creative Computing Graduate Showcase',
-        titleFont
+        jumboFonts
       );
       const textBackground = createTextureFromHTMLElement(gl, canvasBg);
 
