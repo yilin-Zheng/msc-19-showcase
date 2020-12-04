@@ -48,7 +48,7 @@ export const dither_fs = `#version 100
 
     vec2 depth = vec2((b - 0.5) * (pix.x - 0.5), (b - 0.5) * 0.3);
 
-    vec3 tmp_col = texture2D(u_background, pix + grad.xy*0.05 + depth).rgb;
+    vec3 tmp_col = texture2D(u_background, pix + grad.xy*0.02 + depth).rgb;
 
     float h = texture2D(u_heightMap, v_texcoord).r;
     float sh = 1.35 - h * 2.0;
