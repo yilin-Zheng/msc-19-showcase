@@ -117,8 +117,8 @@ const Canvas = () => {
       const canvasBg = createTextCanvas(
         RES.x,
         RES.y,
-        'MSc Creative Computing Graduates',
-        titleFont,
+        'MSc Creative Computing Graduate Showcase',
+        titleFont
       );
       const textBackground = createTextureFromHTMLElement(gl, canvasBg);
 

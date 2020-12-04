@@ -1,8 +1,8 @@
 function getTextHeight(w) {
-  if (w > 200) return 42;
-  if (w > 150) return 28;
-  if (w > 100) return 24;
-  if (w > 0) return 18;
+  if (w > 200) return w / 12;
+  if (w > 150) return w / 6;
+  if (w > 100) return w / 6;
+  if (w > 0) return w / 6.5;
 }
 
 function createTextCanvas(w, h, text, font) {
@@ -12,7 +12,7 @@ function createTextCanvas(w, h, text, font) {
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, w, h);
   let textHeight = getTextHeight(w);
-  ctx.font = `${textHeight}px ${font}`;
+  ctx.font = `800 ${textHeight}px ${font}`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillStyle = 'white';

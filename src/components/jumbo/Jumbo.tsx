@@ -57,10 +57,5 @@ const Jumbo = () => {
     </>
   );
 };
-/*
-        <Title className='text-center mx-1'>
-          MSc Creative Computing Graduates
-        </Title>
-        */
 
 export default Jumbo;
