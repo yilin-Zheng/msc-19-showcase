@@ -8,6 +8,7 @@ const Spacer = styled.div`
 `;
 
 const HoverWrapper = styled.div`
+  user-select: none;
   cursor: none;
   position: fixed;
   top: 0;
@@ -21,11 +22,6 @@ const HoverWrapper = styled.div`
   h1 {
     max-width: 20ch;
   }
-`;
-
-const Title = styled.h2`
-  pointer-events: none;
-  user-select: none;
 `;
 
 const Jumbo = () => {

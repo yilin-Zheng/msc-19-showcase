@@ -21,6 +21,7 @@ const StyledCanvas = styled.canvas`
   height: 100%;
   width: 100%;
   z-index: -1;
+  user-select: none;
 `;
 
 const Canvas = () => {
