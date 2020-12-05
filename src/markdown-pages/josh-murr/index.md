@@ -14,6 +14,8 @@ As a piece it both demonstrates the capabilities and limitations of a machine le
 
 My own experience of the artwork is something which has stuck with me and it is the most successful artworks I have had the opportunity to interact with. It helped me to understand and engage with the abstract and academic world of machine learning, so the motivation behind creating this is to get that same opportunity to even more people on their own computers at home.
 
+![](safari.png)
+
 Machine learning on the internet is a rich field of research as it poses many technical challenges. Typically a neural network requires great computational power to run a model of respectable size for two main reasons: a large model performs many thousands, sometimes millions of calculations on the input data to create an output; a pre-trained model itself is a collection of weights and biases which themselves take up memory on the host machine. So to create a real time interactive piece such as Learning to See the model needs to be small enough for most modern computers to be able to perform the calculations necessary and small enough to be quickly downloadable onto the users machine while holding enough information to create an interesting output.
 
 ![](thumb.png)

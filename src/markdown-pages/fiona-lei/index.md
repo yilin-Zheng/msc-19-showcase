@@ -6,15 +6,15 @@ description: 'A digital installation that allows you to take control over shapes
 thumbnail: 'CUBe_thumbnail.jpg'
 ---
 
-#### [Download the windows game](https://muzitua.itch.io/cube)
-
 CUBe is a digital installation that allows you to take control over shapes and structure. I am hoping to bring out the concept of medium that was introduced by Marshall McLuhan in the 1960s, the time before digital games and the TV were just introduced to the public. Feel the control you have with the shapes and feel the message from the twisted textures over the shape.
+
+#### [Download the windows game](https://muzitua.itch.io/cube)
 
 <div class="iframe-wrapper">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6PwUuf-9ljg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-![Project look](CUBe_01.png)
+![](CUBe_01.png)
 
 The concept of this piece is to split a cube into 3 equivalent parts, representing fragments of the content we receive in daily life. This piece is to visualise how information is being reshaped into different forms when you interact with the 3D models. The different combination is generated from the cube, the substance is the same but is transformed, and visual is different from the original cube. So as the media we get in touch, a movie transfers a book into moving images that express differently on screen; a book transforms the speech we say or our imagination.
 

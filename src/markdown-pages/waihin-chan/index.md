@@ -2,8 +2,8 @@
 slug: '/waihin-chan'
 artist: 'Waihin Chan'
 title: 'Time Machine'
-thumbnail: 'cover.png'
-description: 'Reverse engineering artworks using machine learning'
+thumbnail: 'cover_crop.jpg'
+description: 'Using machine learning to reverse-engineer artworks'
 ---
 
 Outstanding painters and artists are sharing their drawing process on the internet. There are thousands of painting styles and techniques when different artists create the same scene or object. Although creating one’s own art style and drawing habits is important, many new beginners start their career by imitating famous artists’ drawing approaches and techniques. However, what if those artists didn’t share any information about their painting or illustration techniques? Would it be possible to use machine learning method to predict the inverse process, and reveal aspects of their potential technique from a single finished image? Given a certain finished image, how will another artist recreate this work?
@@ -18,12 +18,12 @@ Our model used VAE + GAN structure. The target of our model is to capture the st
 
 We used a auto labeling function to label our dataset.
 
-![Auto labeling function](degree.png)
+![Auto labeling function](degree.jpg)
 
 To train our model, please run our pair-wise optimization first, then run our sequence-wise optimization.
 
 ![Pair-wise](pairwiseoptimization.png)
 
-![Sequence-wise](optimization.png)
+![Sequence-wise](optimization.jpg)
 
 #### Check out our code here: https://github.com/waihinchan/scar
