@@ -88,3 +88,9 @@ $ yarn run build
 ```
 $ cp -r ~/msc-19-showcase/public/* ~/creativecomputing.cci.arts.ac.uk/public_html/
 ```
+
+Optional: add an alias to bash profile:
+
+```
+$ alias deploy="cd msc-19-showcase && git pull && yarn run build && cp -r ~/msc-19-showcase/public/* ~/creativecomputing.cci.arts.ac.uk/public_html/"
+```
