@@ -3,7 +3,7 @@ slug: '/fiona-lei'
 artist: 'Fiona Lei'
 title: 'CUBe'
 description: 'A digital installation that allows you to take control over shapes and structure'
-thumbnail: 'CUBe_thumbnail.jpg'
+thumbnail: 'CUBe_thumbnail_2.jpg'
 ---
 
 CUBe is a digital installation that allows you to take control over shapes and structure. I am hoping to bring out the concept of medium that was introduced by Marshall McLuhan in the 1960s, the time before digital games and the TV were just introduced to the public. Feel the control you have with the shapes and feel the message from the twisted textures over the shape.
