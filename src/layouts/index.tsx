@@ -20,7 +20,7 @@ const pressura = `"GT Pressura", "HelveticaNeue-Light", "Helvetica Neue Light", 
 const theme = {
   white: '#FFFFFF',
   grey: 'rgb(240, 240, 240)',
-  black: 'rgb(25,25,25)',
+  black: 'rgb(20,20,20)',
   blue: '#0057FF',
   jumboFonts: {
     title: helvetica,
