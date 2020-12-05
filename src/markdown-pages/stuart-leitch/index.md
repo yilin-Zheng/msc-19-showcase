@@ -2,7 +2,7 @@
 slug: '/stuart-leitch'
 artist: 'Stuart Leitch'
 title: 'Controversy Warning'
-thumbnail: 'maybe_controversial_hd_3.jpg'
+thumbnail: 'maybe_controversial_hd_new.jpg'
 description: 'If we knew we were about to be exposed to a controversy, would we choose to proceed, or avoid it?'
 ---
 
@@ -24,7 +24,9 @@ Avoid the others' fight. Use the time to relax and cultivate better virtues. Or,
 
 Using simple behavioral economics theories, by drawing users' attention to the potential negativities experienced by consuming the related content, I hope to get more people to simply move along. By consuming less negative content, and even better less tribal content, we can have a sunnier disposition and better feelings about our fellow human. As a second-order benefit, when "it bleeds, it leads" is no longer true to the media, then just perhaps we reduce the incentive for them to keep trying such nasty things.
 
-![](beware_hd.jpg)
+![](beware_hd.png)
+
+![](beware_hd_new.png)
 
 The project uses a Chrome extension combined with a machine learning model trained to detect controversial titles to achieve this effect. It's not flashy, but it works alright.
 
