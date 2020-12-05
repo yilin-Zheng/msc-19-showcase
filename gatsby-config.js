@@ -4,6 +4,16 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const generateFavicons = (sizes) => {
+  return sizes.map((size) => {
+    return {
+      src: `favicons/icon-${size}x${size}.png`,
+      sizes: `${size}x${size}`,
+      type: 'image/png',
+    };
+  });
+};
+
 module.exports = {
   siteMetadata: {
     title: `UAL Creative Computing Institute`,
@@ -60,7 +70,8 @@ module.exports = {
         background_color: `white`,
         theme_color: `white`,
         display: `minimal-ui`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.png`,
+        icons: generateFavicons([48, 72, 96, 144, 192, 256, 384, 512]),
       },
     },
     `gatsby-plugin-offline`,
