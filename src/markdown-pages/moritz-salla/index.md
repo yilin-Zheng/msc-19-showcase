@@ -2,7 +2,7 @@
 slug: '/moritz-salla'
 artist: 'Moritz Salla'
 title: 'The Healing Orb'
-thumbnail: './render4.jpg'
+thumbnail: './thumbnail.jpg'
 description: 'A Prototype Smart Lamp for Digital Wellbeing'
 ---
 
@@ -12,21 +12,21 @@ The internet is a tool. As human brains have evolved very slowly over the last 2
 
 The tech industry's incentive to create awareness remains sluggish. The void of health solutions within the tech industry ought to be addressed and should not be left to companies that profit from the status quo.
 
-> _Healing Orb_ is a prototype that explores how IoT can help us create digital wellbeing. By storing and analysing the content we browse on a daily basis, it tries to judge the healthiness of our exposures.
+> _Healing Orb_ is a prototype that explores how IoT can help us create digital wellbeing. By storing and analyzing the content we browse daily, it tries to judge the healthiness of our exposures.
 
 ![Healing Orb is comprised of a Raspberry Pi, an LED panel and a glass enclosure](./setup.png)
 
-The Healing Orb exists of two parts: software, running in the background of the user's computer, and secondly, a wireless IoT device in the form of a lamp. The latter's hue and brightness is a visualization of health levels: a specific tone represents healthy, whereas another represents unhealthy user exposure. The Orb will slowly fade its colour, dependent on an average reading, and never requires active interaction.
+The Healing Orb exists of two parts. **Software**, running in the background of the user's computer. A **wireless IoT device** in the form of a lamp. The latter's hue and brightness is a visualization of health levels: a specific tone represents healthy, whereas another represents unhealthy user exposure. The Orb will slowly fade its colour, dependent on an average reading, and never requires active interaction.
 
 > By flawlessly blending into existing furniture, the Healing Orb's ambient interface provides a less obtrusive interface for self-monitoring.
 
-![Technical setup & data flow](illustrations.jpg)
+![Technical setup & data flow](illustration.jpg)
 
-As a prerequisite to using the Healing Pod, a user must install a chrome extension. This extension scrapes website content, predicts its sentiment using machine learning and sends corresponding requests to the smart lamp. The Healing Pod's smart lamp is a glass dome that contains a Raspberry Pi, running a dockerised flask server. Multiple devices of a single user are able to connect to it simultaeously.
+As a prerequisite to using the Healing Pod, a user must install a chrome extension. This extension scrapes website content, predicts its sentiment using machine learning and sends corresponding requests to the smart lamp. The Healing Pod's smart lamp is a glass dome that contains a Raspberry Pi, running a dockerized flask server. Multiple devices of a single user can connect to it simultaneously.
 
 > The Ambient Orb's chrome extension uses sentiment and toxicity analysis to categorize a user's content exposure
 
-![](./screen2.png)
+![](./ui.png)
 
 ### Find the code here: https://github.com/moritzsalla/healingorb-monorepo
 

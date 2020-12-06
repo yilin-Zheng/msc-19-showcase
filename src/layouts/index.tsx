@@ -112,7 +112,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  p {
+  p, li {
     ${typeBase}
     font-family: ${helvetica};
     letter-spacing: 0.015em;
@@ -124,6 +124,11 @@ const GlobalStyle = createGlobalStyle`
     @media (max-width: 768px) { 
       font-size: 1rem;  
     }
+  }
+
+li::marker {
+text-align: left;
+}
   }
 
   figcaption {
