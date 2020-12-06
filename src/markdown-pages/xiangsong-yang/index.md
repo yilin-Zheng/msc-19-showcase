@@ -16,7 +16,7 @@ customised emotion visualisation and playful user interface.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ByVcCXy-KTw?start=15" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-![System map](system_map.png)
+![System map](system_map2.jpg)
 
 The communication of between these three sections are based on OSC signal.
 
