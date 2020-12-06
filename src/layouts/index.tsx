@@ -104,7 +104,7 @@ const GlobalStyle = createGlobalStyle`
     ${typeBase}
     font-family: ${helvetica};
     font-weight: 800;
-    font-weight: 1.25rem;
+    line-height: 1.35;
 
     @media (max-width: 768px) { 
       font-size: 1.45rem;  
